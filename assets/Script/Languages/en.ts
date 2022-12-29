@@ -1570,4 +1570,6 @@ export const EN = {
     GameSettingSFXBubble: "Chat Mention",
     GameSettingSFXBubbleDesc: "The sound effect that can be heard when you are mentioned '@' in chat.",
     GameSettingInput: "Input",
+    NotificationLog: "Notification Log",
+    NotificationLogDes: "A record of all notifications for this game session.",
 };

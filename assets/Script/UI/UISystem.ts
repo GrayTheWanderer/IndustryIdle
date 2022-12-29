@@ -25,6 +25,7 @@ import { InputSettingsPage } from "./InputSettingsPage";
 import { InspectPage } from "./InspectPage";
 import { LeaderboardPage } from "./LeaderboardPage";
 import { MainPage } from "./MainPage";
+import { NotificationPage } from "./NotificationPage";
 import { PatchNotesPage } from "./PatchNotesPage";
 import { PlayerTradePage } from "./PlayerTradePage";
 import { SettingsPage } from "./SettingsPage";
@@ -218,6 +219,7 @@ export const UI_ROUTES = {
     "/player-trade": PlayerTradePage,
     "/color-theme-editor": ColorThemeEditorPage,
     "/choose-flag": ChooseFlagPage,
+    "/notifications": NotificationPage,
     "/achievements": AchievementsPage,
     "/patch-notes": PatchNotesPage,
     "/settings": SettingsPage,
@@ -229,13 +231,18 @@ export const UI_ROUTES = {
 };
 
 let toastTimeoutId: number = null;
-
+export const toastLog: Array = new Array({msg: "UIHelper::DEV_ENTRY : INIT_SESSION_NOTIFICATION_LOG", timestamp: Date.now()});
+// LoggedToast {msg: string, timestamp: number}
 export function showToast(text: string, duration = 3500) {
     if (toastTimeoutId) {
         clearTimeout(toastTimeoutId);
         toastNode.style.display = "none";
     }
 
+    console.log('UISystem::showToast wants log Toast: '+text);//dev
+    console.log('UISystem::showToast wants log timestamp: '+new Date(Date.now()).toLocaleTimeString());//dev
+    toastLog.push({msg: text, timestamp: Date.now()});
+    console.log('UISystem::showToast.toastLog: '+toastLog);//dev
     toastNode.innerHTML = `<div class="toast">${text}</div>`;
     toastNode.style.display = "flex";
 

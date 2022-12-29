@@ -205,6 +205,11 @@ export function HeadquarterPage(): m.Comp {
                             ]),
                         ]),
                         m(".hr"),
+                        m(".row.pointer", { onclick: () => routeTo("/notifications") }, [
+                            m(".f1", [m("div", t("NotificationLog")), m(".text-desc.text-s", t("NotificationLogDes"))]),
+                            m(".ml10.blue", iconB("arrow_forward")),
+                        ]),
+                        m(".hr"),
                         m(".row.pointer", { onclick: () => routeTo("/achievements") }, [
                             m(".f1", [
                                 m("div", t("Achievements")),
