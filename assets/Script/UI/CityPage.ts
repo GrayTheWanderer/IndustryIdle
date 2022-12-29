@@ -1,7 +1,7 @@
 import { getPrestigeCurrency, MAP, prestige, RES } from "../CoreGame/Logic/Logic";
 import { hasActiveTrades } from "../CoreGame/Logic/PlayerTrade";
 import { depositsToPercentage } from "../CoreGame/MapDefinitions";
-import { dlcDesc, dlcLabel, G, hasDLC } from "../General/GameData";
+import { DLC, dlcDesc, dlcLabel, G, hasDLC } from "../General/GameData";
 import { formatPercent, getResourceUrl, keysOf, nf } from "../General/Helper";
 import { t } from "../General/i18n";
 import { iconB, leftOrRight } from "./UIHelper";
@@ -131,10 +131,23 @@ export function CityPage(): m.Comp<{ city: string }> {
                         }),
                     ]),
                     m(".box", [
-                        m(".title", t("Crop")),
-                        keysOf(city.crops).map((e) => {
-                            return [m(".hr"), m("div", RES[e].name())];
-                        }),
+                        m(".two-col.blue", 
+                            {
+                                onclick: () => {
+                                    G.audio.playError();
+                                    showToast(dlcDesc("dlc2"));
+                                },
+                            },
+                            [
+                                m("div", iconB("lock", 24, 5)), m("div", {style: "text-align: left;"}, t("RequireExpansionPack2"))
+                            ]
+                        ),
+                        m(".box", [
+                            m(".title", t("Crop")),
+                            keysOf(city.crops).map((e) => {
+                                return [m(".hr"), m("div", RES[e].name())];
+                            }),
+                        ]),
                     ]),
                     m(".box", [m(".title", t("CityBonus")), m(".city-bonus", m.trust(city.bonus()))]),
                 ]),
